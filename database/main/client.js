@@ -44,10 +44,10 @@ const Client = function (logger, configMain) {
 
     // Check if TLS Configuration is Set
     if (_this.configMain.client.tls) {
-      options.tls = {};
-      options.tls.key = fs.readFileSync(path.join('./certificates', _this.configMain.tls.key)).toString();
-      options.tls.cert = fs.readFileSync(path.join('./certificates', _this.configMain.tls.cert)).toString();
-      options.tls.ca = fs.readFileSync(path.join('./certificates', _this.configMain.tls.ca)).toString();
+      options.ssl = {};
+      options.ssl.key = _this.configMain.tls.key != "" ? fs.readFileSync(path.join('./certificates', _this.configMain.tls.key)).toString() : null ;
+      options.ssl.cert = _this.configMain.tls.cert != "" ? fs.readFileSync(path.join('./certificates', _this.configMain.tls.cert)).toString() : null;
+      options.ssl.ca = _this.configMain.tls.ca != "" ? fs.readFileSync(path.join('./certificates', _this.configMain.tls.ca)).toString() : null;
     }
 
     // Build and Assign Database Client
